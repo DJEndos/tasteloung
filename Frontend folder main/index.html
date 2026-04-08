@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Taste Lounge — Authentic Nigerian Meals, Snacks & Fresh Yoghurt. Order online via WhatsApp or Email. Founded 2025 by Chef B. (Blessing Kalu)."/>
+  <meta name="keywords" content="Nigerian food, Jollof rice, Egusi soup, suya, puff puff, fresh yoghurt, Nigerian restaurant, Lagos food delivery"/>
+  <title>Taste Lounge — Authentic Nigerian Flavours</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>"/>
+
+  <!-- Bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<!-- Preloader -->
+<!-- ===== PRELOADER ===== -->
+<div id="preloader">
+  <div class="preloader-logo">
+      <img  src="/img/avatar1.png" alt="" width="200" height="200"/>
+    <span class="logo-text"> Taste Lounge</span>
+    <span class="logo-sub">Authentic Nigerian Flavours</span>
+    <div class="preloader-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar d-none d-md-block">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <small>
+          <i class="bi bi-clock me-1"></i> Mon–Sun: 7AM – 10PM &nbsp;|&nbsp;
+          <i class="bi bi-geo-alt me-1"></i> Nigeria
+        </small>
+      </div>
+      <div class="col-md-6 text-end">
+        <small>
+          <i class="bi bi-whatsapp me-1" style="color:#25D366"></i>
+          <a href="https://wa.me/2349022750048">09022750048</a> &nbsp;|&nbsp;
+          <i class="bi bi-envelope me-1"></i>
+          <a href="mailto:Tastelounge@gmail.com">Tastelounge@gmail.com</a>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <div class="brand-logo-icon">🍽️</div>
+      <div class="brand-text-wrap">
+        <span class="brand-name">Taste Lounge</span>
+        <span class="brand-tagline">Authentic Nigerian Flavours</span>
+      </div>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-1 mb-2 mb-lg-0">
+        <li class="nav-item">
+              <i class="bi bi-Home me-1"></i>
+            <a class="nav-link active" href="#hero">Home</a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#order">Order</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <!-- Guest links -->
+        <li class="nav-item nav-guest">
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <i class="bi bi-person-circle me-1"></i>Login
+          </a>
+        </li>
+        <li class="nav-item nav-guest">
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+            <i class="bi bi-person-plus me-1"></i>Sign Up
+          </a>
+        </li>
+        <!-- User links (hidden by default) -->
+        <li class="nav-item dropdown nav-user" style="display:none">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person-check-fill me-1" style="color:var(--gold)"></i>
+            <span class="user-display-name"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" style="background:var(--dark);border:1px solid rgba(201,146,42,0.3)">
+            <li><a class="dropdown-item" href="account.html" style="color:var(--cream-dark)"><i class="bi bi-person me-2"></i>My Account</a></li>
+            <li><a class="dropdown-item" href="orders.html" style="color:var(--cream-dark)"><i class="bi bi-bag-check me-2"></i>My Orders</a></li>
+            <li class="nav-admin" style="display:none"><a class="dropdown-item" href="admin.html" style="color:var(--gold)"><i class="bi bi-speedometer2 me-2"></i>Admin Dashboard</a></li>
+            <li><hr class="dropdown-divider" style="border-color:rgba(201,146,42,0.2)"/></li>
+            <li><a class="dropdown-item" href="#" onclick="logout()" style="color:#ff6b6b"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+          </ul>
+        </li>
+        <!-- Cart -->
+        <li class="nav-item">
+          <button class="nav-link cart-btn" onclick="openCart()">
+            <i class="bi bi-basket2-fill"></i> Cart
+            <span class="cart-count" style="display:none">0</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero-section" id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-bg-text">NAIJA</div>
+  <div class="container position-relative">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="hero-badge">
+          <i class="bi bi-star-fill"></i> #1 Nigerian Food Experience
+        </div>
+        <h1 class="hero-title">
+          A <span class="accent">Taste</span> of<br>
+          Authentic<br>
+          <span class="accent">Nigeria</span>
+        </h1>
+        <p class="hero-desc">
+          From rich Egusi soups to smoky Suya, crispy Puff Puff to fresh Zobo — 
+          every bite tells the story of Nigeria's vibrant culinary heritage. 
+          Founded in 2025 by Chef B. (Blessing Kalu).
+        </p>
+        <div class="hero-actions d-flex flex-wrap gap-3">
+          <a href="#menu" class="btn-gold">
+            <i class="bi bi-grid-fill"></i> Explore Menu
+          </a>
+          <a href="#order" class="btn-outline-cream">
+            <i class="bi bi-whatsapp"></i> Order Now
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num counter-num" data-target="50" data-suffix="+">0+</span>
+            <span class="stat-label">Menu Items</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num counter-num" data-target="500" data-suffix="+">0+</span>
+            <span class="stat-label">Happy Customers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num counter-num" data-target="4" data-suffix=".9⭐">0</span>
+            <span class="stat-label">Rating</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="hero-image-wrap">
+          <div class="hero-img-frame">🍲</div>
+          <div class="hero-float-card card-1">
+            <div class="float-card-title">🔥 Today's Special</div>
+            <div class="float-card-sub">Jollof Rice + Grilled Chicken</div>
+            <div style="color:var(--gold);font-weight:700;font-size:0.9rem;margin-top:4px">₦2,500</div>
+          </div>
+          <div class="hero-float-card card-2">
+            <div class="float-card-title">⚡ Quick Order</div>
+            <div class="float-card-sub">Via WhatsApp in 30 secs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES STRIP ===== -->
+<div class="features-strip">
+  <div class="container">
+    <div class="row justify-content-center g-2">
+      <div class="col-6 col-md-3">
+        <div class="feature-item justify-content-center">
+          <i class="bi bi-lightning-charge-fill"></i>
+          <span>Fast Delivery</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="feature-item justify-content-center">
+          <i class="bi bi-shield-check-fill"></i>
+          <span>Fresh & Hygienic</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="feature-item justify-content-center">
+          <i class="bi bi-whatsapp"></i>
+          <span>WhatsApp Orders</span>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="feature-item justify-content-center">
+          <i class="bi bi-award-fill"></i>
+          <span>Chef's Quality</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CATEGORIES SECTION ===== -->
+<section class="categories-section" id="categories">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-badge"><i class="bi bi-grid-fill"></i> Browse By Category</div>
+      <h2 class="section-title">What Are You <span class="accent">Craving?</span></h2>
+      <div class="section-divider mx-auto"></div>
+    </div>
+    <div class="row g-3 justify-content-center ">
+      <div class="col-6 col-md-3 col-lg-2">
+        <div class="category-card active" onclick="filterMenu('meals'); this.closest('.categories-section').nextElementSibling.scrollIntoView({behavior:'smooth'}); document.querySelectorAll('.category-card').forEach(c=>c.classList.remove('active')); this.classList.add('active')">
+          <div class="cat-icon"><img src="/img/rice-icon.png"  alt=""></div>
+          <div class="cat-name">Rice Meals</div>
+          <div class="cat-count">12 items</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <div class="category-card" onclick="filterMenu('soups'); document.querySelectorAll('.category-card').forEach(c=>c.classList.remove('active')); this.classList.add('active')">
+          <div class="cat-icon"><img src="/img/rice-icon2.png"  alt=""></div>
+          <div class="cat-name">Soups & Stews</div>
+          <div class="cat-count">10 items</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <div class="category-card" onclick="filterMenu('snacks'); document.querySelectorAll('.category-card').forEach(c=>c.classList.remove('active')); this.classList.add('active')">
+          <div class="cat-icon"><img src="/img/rice-icon3.png"  alt=""></div>
+          <div class="cat-name">Snacks</div>
+          <div class="cat-count">14 items</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <div class="category-card" onclick="filterMenu('drinks'); document.querySelectorAll('.category-card').forEach(c=>c.classList.remove('active')); this.classList.add('active')">
+          <div class="cat-icon"><img src="/img/Yoghurt.jpeg" alt=""></div>
+          <div class="cat-name">Drinks & Yoghurt</div>
+          <div class="cat-count">8 items</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <div class="category-card" onclick="filterMenu('grills'); document.querySelectorAll('.category-card').forEach(c=>c.classList.remove('active')); this.classList.add('active')">
+          <div class="cat-icon"><img src="/img/grill.jpeg" alt=""></div>
+          <div class="cat-name">Grills & BBQ</div>
+          <div class="cat-count">9 items</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3 col-lg-2">
+        <div class="category-card" onclick="filterMenu('all'); document.querySelectorAll('.category-card').forEach(c=>c.classList.remove('active')); this.classList.add('active')">
+          <div class="cat-icon">🍽️</div>
+          <div class="cat-name">All Items</div>
+          <div class="cat-count">53 items</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MENU SECTION ===== -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="text-center mb-4">
+      <div class="section-badge"><i class="bi bi-journal-text"></i> Our Menu</div>
+      <h2 class="section-title">Explore Our <span class="accent">Full Menu</span></h2>
+      <div class="section-divider mx-auto mb-4"></div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="menu-filter-bar justify-content-center">
+      <button class="filter-btn active" data-filter="all" onclick="filterMenu('all')">🍽️ All Items</button>
+      <button class="filter-btn" data-filter="meals" onclick="filterMenu('meals')"><img src="/img/rice-icon.png" alt=""> Rice Meals</button>
+      <button class="filter-btn" data-filter="soups" onclick="filterMenu('soups')"><img src="/img/rice-icon2.png" alt=""> Soups & Stews</button>
+      <button class="filter-btn" data-filter="snacks" onclick="filterMenu('snacks')"><img src="/img/rice-icon3.png" alt=""> Snacks</button>
+      <button class="filter-btn" data-filter="drinks" onclick="filterMenu('drinks')"><img src="/img/Yoghurt.jpeg" alt=""> Drinks</button>
+      <button class="filter-btn" data-filter="grills" onclick="filterMenu('grills')"><img src="/img/grill.jpeg" alt=""> Grills</button>
+    </div>
+
+    <!-- ===== RICE MEALS ===== -->
+    <div class="menu-category-section" data-category="meals">
+      <div class="menu-category-header">
+        <span class="menu-category-icon"></span>
+        <span class="menu-category-title">Rice & Main Meals</span>
+        <span class="menu-category-count">12 items</span>
+      </div>
+      <div class="row g-4">
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">
+              <img src="/img/rice-icon.png" alt="">
+              <span class="menu-badge">Best Seller</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Nigerian Jollof Rice</div>
+              <div class="menu-item-desc">Party-style smoky Jollof rice cooked with tomatoes, peppers & spices. A timeless classic.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦2,300</div>
+                <button class="btn-add-cart" onclick="addToCart('Nigerian Jollof Rice', 1500, '🍛', 'meals')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">
+              <img src="/img/fried-rice.jpg" alt="">
+              <span class="menu-badge new">Popular</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Fried Rice & Chicken</div>
+              <div class="menu-item-desc">Fluffy fried rice with mixed vegetables & sweet coleslaw on the side.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦2,800</div>
+                <button class="btn-add-cart" onclick="addToCart('Fried Rice + Coleslaw', 1800, '🍚', 'meals')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img"><img src="/img/jollofrice.jpg" alt=""></div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Jollof Rice + Chicken</div>
+              <div class="menu-item-desc">Smoky Jollof rice served with a juicy fried or grilled chicken piece.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦2,500</div>
+                <button class="btn-add-cart" onclick="addToCart('Jollof Rice + Chicken', 2500, '🍗', 'meals')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img"><img src="/img/whiterice.jpg" alt=""></div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">White Rice + Stew & Beef</div>
+              <div class="menu-item-desc">Fluffy white rice with rich tomato stew and tender beef pieces.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦2,000</div>
+                <button class="btn-add-cart" onclick="addToCart('White Rice + Stew & Beef', 2000, '🍖', 'meals')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img"><img src="/img/ofadarice.png" alt=""></div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Ofada Rice + Egg & Plantains</div>
+              <div class="menu-item-desc">Soft rice pudding from Southern Nigeria, best paired with Miyan Kuka or Egusi.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,200</div>
+                <button class="btn-add-cart" onclick="addToCart('Ofada Rice + Egg & Plantains', 1200, '🌽', 'meals')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img"><img src="/img/EGUSI-SOUP-EFO-ELEGUSI.jpg" alt=""></div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Egusi Soup + Eba</div>
+              <div class="menu-item-desc"> smooth Egusi paired with silky Eba and assorted meats. Nigerian pride!</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦2,200</div>
+                <button class="btn-add-cart" onclick="addToCart('Amala + Ewedu', 2200, '🫓', 'meals')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🍠</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Pounded Yam + Ofe</div>
+              <div class="menu-item-desc">Smooth pounded yam served with your choice of Ofe Onugbu or Egusi soup.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦2,800</div>
+                <button class="btn-add-cart" onclick="addToCart('Pounded Yam + Ofe', 2800, '🍠', 'meals')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🌾</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Eba (Garri) + Soup</div>
+              <div class="menu-item-desc">Classic Eba served with your choice of Ogbono, Egusi, or Bitterleaf soup.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,800</div>
+                <button class="btn-add-cart" onclick="addToCart('Eba + Soup', 1800, '🌾', 'meals')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end row -->
+    </div><!-- end meals section -->
+
+    <!-- ===== SOUPS & STEWS ===== -->
+    <div class="menu-category-section" data-category="soups">
+      <div class="menu-category-header">
+        <span class="menu-category-icon">🥘</span>
+        <span class="menu-category-title">Soups & Stews</span>
+        <span class="menu-category-count">10 items</span>
+      </div>
+      <div class="row g-4">
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🥘
+              <span class="menu-badge">Best Seller</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Egusi Soup</div>
+              <div class="menu-item-desc">Ground melon seeds cooked in palm oil with leafy vegetables, assorted meat & fish.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,500</div>
+                <button class="btn-add-cart" onclick="addToCart('Egusi Soup', 1500, '🥘', 'soups')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🍲</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Ogbono Soup</div>
+              <div class="menu-item-desc">Draw soup made from wild mango seeds with assorted meats and spinach.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,500</div>
+                <button class="btn-add-cart" onclick="addToCart('Ogbono Soup', 1500, '🍲', 'soups')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🫕
+              <span class="menu-badge spicy">🌶 Hot</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Pepper Soup (Goat)</div>
+              <div class="menu-item-desc">Hot & spicy goat meat pepper soup with Cameroon pepper & uziza leaves.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦2,500</div>
+                <button class="btn-add-cart" onclick="addToCart('Goat Pepper Soup', 2500, '🫕', 'soups')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🐠</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Catfish (Point & Kill)</div>
+              <div class="menu-item-desc">Fresh catfish pepper soup — hot, spicy and deeply satisfying.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦3,000</div>
+                <button class="btn-add-cart" onclick="addToCart('Catfish Pepper Soup', 3000, '🐠', 'soups')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🫙</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Bitterleaf Soup (Ofe Onugbu)</div>
+              <div class="menu-item-desc">Rich Igbo soup with bitter leaves, cocoyam thickener and assorted meats.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,800</div>
+                <button class="btn-add-cart" onclick="addToCart('Bitterleaf Soup', 1800, '🫙', 'soups')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🥬</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Vegetable Soup (Edikang Ikong)</div>
+              <div class="menu-item-desc">A rich, nutritious Calabar vegetable soup with water leaf and ugu.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦2,000</div>
+                <button class="btn-add-cart" onclick="addToCart('Edikang Ikong Soup', 2000, '🥬', 'soups')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== SNACKS ===== -->
+    <div class="menu-category-section" data-category="snacks">
+      <div class="menu-category-header">
+        <span class="menu-category-icon">🍩</span>
+        <span class="menu-category-title">Snacks & Small Chops</span>
+        <span class="menu-category-count">14 items</span>
+      </div>
+      <div class="row g-4">
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🍩
+              <span class="menu-badge">Fan Fav</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Puff Puff (10 Pcs)</div>
+              <div class="menu-item-desc">Fluffy, golden-fried dough balls — Nigeria's most beloved street snack.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦500</div>
+                <button class="btn-add-cart" onclick="addToCart('Puff Puff (10 Pcs)', 500, '🍩', 'snacks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🌮</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Meat Pie</div>
+              <div class="menu-item-desc">Flaky pastry stuffed with seasoned minced meat, potatoes & carrots.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦400</div>
+                <button class="btn-add-cart" onclick="addToCart('Meat Pie', 400, '🌮', 'snacks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🫓</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Akara (Bean Cake) x6</div>
+              <div class="menu-item-desc">Crispy fried bean cakes spiced with onions and peppers. Classic breakfast snack.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦400</div>
+                <button class="btn-add-cart" onclick="addToCart('Akara x6', 400, '🫓', 'snacks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🥟</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Spring Rolls (6 Pcs)</div>
+              <div class="menu-item-desc">Crispy rolls filled with spiced chicken, vegetables, served with chili dip.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,200</div>
+                <button class="btn-add-cart" onclick="addToCart('Spring Rolls (6 Pcs)', 1200, '🥟', 'snacks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🍟</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Fried Plantain (Dodo)</div>
+              <div class="menu-item-desc">Sweet ripe plantain fried to golden perfection. The perfect side dish.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦600</div>
+                <button class="btn-add-cart" onclick="addToCart('Fried Plantain (Dodo)', 600, '🍟', 'snacks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🥚</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Moi Moi (2 Wraps)</div>
+              <div class="menu-item-desc">Steamed bean pudding with fish, eggs and peppers wrapped in leaves.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦700</div>
+                <button class="btn-add-cart" onclick="addToCart('Moi Moi (2 Wraps)', 700, '🥚', 'snacks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🥞</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Pancakes + Syrup</div>
+              <div class="menu-item-desc">Fluffy breakfast pancakes served with honey syrup and fresh fruit.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,000</div>
+                <button class="btn-add-cart" onclick="addToCart('Pancakes + Syrup', 1000, '🥞', 'snacks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🍢
+              <span class="menu-badge spicy">🌶 Spicy</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Suya Skewers (5 Pcs)</div>
+              <div class="menu-item-desc">Spiced grilled beef skewers with suya spice blend, onions & tomatoes.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,500</div>
+                <button class="btn-add-cart" onclick="addToCart('Suya Skewers (5 Pcs)', 1500, '🍢', 'snacks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== DRINKS & YOGHURT ===== -->
+    <div class="menu-category-section" data-category="drinks">
+      <div class="menu-category-header">
+        <span class="menu-category-icon">🥛</span>
+        <span class="menu-category-title">Drinks, Yoghurt & Smoothies</span>
+        <span class="menu-category-count">8 items</span>
+      </div>
+      <div class="row g-4">
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🥛
+              <span class="menu-badge new">Fresh Daily</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Fresh Yoghurt (Plain)</div>
+              <div class="menu-item-desc">Creamy, homemade fresh yoghurt made daily. Plain & natural — no preservatives.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦800</div>
+                <button class="btn-add-cart" onclick="addToCart('Fresh Yoghurt (Plain)', 800, '🥛', 'drinks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🍓
+              <span class="menu-badge">Fan Fav</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Strawberry Yoghurt</div>
+              <div class="menu-item-desc">Our signature fresh yoghurt blended with real strawberry puree. Perfectly sweet!</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,000</div>
+                <button class="btn-add-cart" onclick="addToCart('Strawberry Yoghurt', 1000, '🍓', 'drinks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🥭</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Mango Smoothie</div>
+              <div class="menu-item-desc">Fresh Nigerian Alphonso mango blended smooth with a hint of ginger.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦900</div>
+                <button class="btn-add-cart" onclick="addToCart('Mango Smoothie', 900, '🥭', 'drinks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🌺</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Zobo Drink (500ml)</div>
+              <div class="menu-item-desc">Chilled hibiscus flower drink with cloves, ginger and pineapple. Refreshing!</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦500</div>
+                <button class="btn-add-cart" onclick="addToCart('Zobo Drink (500ml)', 500, '🌺', 'drinks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🌿</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Kunu Drink (500ml)</div>
+              <div class="menu-item-desc">Northern Nigerian grain drink made from millet, ginger and pepper. Chilled.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦500</div>
+                <button class="btn-add-cart" onclick="addToCart('Kunu Drink (500ml)', 500, '🌿', 'drinks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🫐</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Mixed Berry Yoghurt</div>
+              <div class="menu-item-desc">Fresh yoghurt swirled with blueberry, strawberry and raspberry compote.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦1,200</div>
+                <button class="btn-add-cart" onclick="addToCart('Mixed Berry Yoghurt', 1200, '🫐', 'drinks')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== GRILLS ===== -->
+    <div class="menu-category-section" data-category="grills">
+      <div class="menu-category-header">
+        <span class="menu-category-icon">🍢</span>
+        <span class="menu-category-title">Grills & BBQ</span>
+        <span class="menu-category-count">9 items</span>
+      </div>
+      <div class="row g-4">
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🍗
+              <span class="menu-badge spicy">🔥 Hot</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Grilled Chicken (Half)</div>
+              <div class="menu-item-desc">Marinated half chicken grilled to smoky perfection with peppered sauce.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦2,800</div>
+                <button class="btn-add-cart" onclick="addToCart('Grilled Chicken (Half)', 2800, '🍗', 'grills')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🥩
+              <span class="menu-badge">Best Seller</span>
+            </div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Asun (Spicy Goat Meat)</div>
+              <div class="menu-item-desc">Chopped, peppered grilled goat meat — smoky, spicy and absolutely irresistible.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦3,500</div>
+                <button class="btn-add-cart" onclick="addToCart('Asun (Spicy Goat Meat)', 3500, '🥩', 'grills')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🦐</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Peppered Prawns</div>
+              <div class="menu-item-desc">Jumbo prawns tossed in a rich peppered sauce with bell peppers and onions.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦4,500</div>
+                <button class="btn-add-cart" onclick="addToCart('Peppered Prawns', 4500, '🦐', 'grills')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="menu-item-card">
+            <div class="menu-item-img">🐟</div>
+            <div class="menu-item-body">
+              <div class="menu-item-name">Grilled Tilapia Fish</div>
+              <div class="menu-item-desc">Whole tilapia marinated in herbs & peppers, grilled on open flame. Served with sauce.</div>
+              <div class="menu-item-footer">
+                <div class="menu-item-price">₦3,200</div>
+                <button class="btn-add-cart" onclick="addToCart('Grilled Tilapia Fish', 3200, '🐟', 'grills')">
+                  <i class="bi bi-plus"></i> Add
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== ABOUT SECTION ===== -->
+<section class="about-section" id="about">
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5">
+        <div class="about-image-grid">
+          <div class="about-img-card large">🍲</div>
+          <div class="about-img-card">👩‍🍳</div>
+          <div class="about-img-card">🌶️</div>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="section-badge"><i class="bi bi-info-circle-fill"></i> Our Story</div>
+        <h2 class="section-title light">About <span class="accent">Taste Lounge</span></h2>
+        <div class="section-divider left mb-4"></div>
+
+        <div class="about-chef-badge">
+          <div class="chef-avatar">👩‍🍳</div>
+          <div>
+            <div class="chef-name">Chef B. (Blessing Kalu)</div>
+            <div class="chef-title">Founder & Executive Chef · Since 2025</div>
+          </div>
+        </div>
+
+        <p class="about-text">
+          Taste Lounge was born in 2025 from a dream — to bring the rich, 
+          diverse and deeply soulful flavours of Nigerian cuisine to every doorstep. 
+          Founded by Chef Blessing Kalu, who grew up watching her grandmother 
+          transform simple ingredients into unforgettable meals.
+        </p>
+        <p class="about-text mt-3">
+          Every dish we serve is a tribute to Nigeria's vibrant food culture — 
+          from the smoky Jollof rice of the Southwest to the hearty pepper soups 
+          of the South-South, the spiced Suya of the North and the rich 
+          Egusi soups of the East. We cook with love, serve with pride.
+        </p>
+
+        <div class="about-features">
+          <div class="about-feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>100% fresh ingredients sourced locally from Nigerian markets daily</span>
+          </div>
+          <div class="about-feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>No artificial preservatives — every meal made from scratch</span>
+          </div>
+          <div class="about-feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Quick ordering via WhatsApp and Email for your convenience</span>
+          </div>
+          <div class="about-feature-item">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>Catering services available for events, parties & celebrations</span>
+          </div>
+        </div>
+
+        <a href="#order" class="btn-gold mt-4 d-inline-flex">
+          <i class="bi bi-bag-heart-fill"></i> Order From Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ORDER SECTION ===== -->
+<section class="order-section" id="order">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-badge"><i class="bi bi-bag-fill"></i> Place Your Order</div>
+      <h2 class="section-title">Order <span class="accent">Easily & Fast</span></h2>
+      <p class="text-muted">Fill in your details below, then send via WhatsApp or Email</p>
+      <div class="section-divider mx-auto"></div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="order-card">
+          <div class="order-card-header">
+            <h3>🛒 Your Order</h3>
+            <p style="color:rgba(253,246,236,0.7);font-size:0.88rem;margin:0">
+              Add items from the menu above, fill your details, then choose how to send your order
+            </p>
+          </div>
+          <div class="order-card-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Full Name *</label>
+                <input type="text" id="orderName" class="form-control" placeholder="Your full name"/>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" id="orderPhone" class="form-control" placeholder="08012345678"/>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Delivery Address</label>
+                <input type="text" id="orderAddress" class="form-control" placeholder="Street, Estate, City, State"/>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Special Instructions (Optional)</label>
+                <textarea id="orderNotes" class="form-control" rows="2" placeholder="e.g. No onions, extra spicy, etc."></textarea>
+              </div>
+            </div>
+
+            <!-- Cart Summary Preview -->
+            <div id="orderCartPreview" class="mt-4 p-3 rounded-3" style="background:var(--cream-dark);border:1px dashed rgba(201,146,42,0.4)">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <strong style="color:var(--dark)">🛒 Cart Summary</strong>
+                <button class="btn btn-sm" style="background:transparent;color:var(--gold);border:1px solid var(--gold);border-radius:50px;font-size:0.8rem" onclick="openCart()">
+                  View Cart
+                </button>
+              </div>
+              <div id="orderCartList" style="font-size:0.88rem;color:var(--text-light)">
+                No items in cart yet — browse the menu and click "Add" to add items!
+              </div>
+            </div>
+
+            <div class="row g-3 mt-2">
+              <div class="col-md-6">
+                <button class="whatsapp-btn" onclick="orderViaWhatsApp()">
+                  <i class="bi bi-whatsapp fs-5"></i> Send via WhatsApp
+                </button>
+              </div>
+              <div class="col-md-6">
+                <a class="email-btn" onclick="orderViaEmail()">
+                  <i class="bi bi-envelope-fill fs-5"></i> Send via Email
+                </a>
+              </div>
+            </div>
+            <p class="text-center mt-3" style="font-size:0.8rem;color:var(--text-light)">
+              <i class="bi bi-shield-check text-success me-1"></i>
+              Your order is saved locally. We'll confirm via WhatsApp/email within 10 minutes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials-section" id="reviews">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-badge" style="background:rgba(201,146,42,0.1);border-color:rgba(201,146,42,0.3)">
+        <i class="bi bi-star-fill"></i> Customer Reviews
+      </div>
+      <h2 class="section-title light">What Our <span class="accent">Customers Say</span></h2>
+      <div class="section-divider mx-auto"></div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The Jollof rice tastes exactly like my mum's! I've ordered 4 times this month already. Chef Blessing really knows her craft. Fast delivery too!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div>
+              <div class="author-name">Adaeze Okonkwo</div>
+              <div class="author-location">📍 Lagos, Nigeria</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"The fresh yoghurt here is something else! I got the strawberry flavour and it's so creamy with no artificial taste. This is my go-to spot now."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">K</div>
+            <div>
+              <div class="author-name">Kelechi Eze</div>
+              <div class="author-location">📍 Abuja, Nigeria</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Ordered Asun and Grilled Chicken for a small party — everyone was asking where I got the food from! Quality is top-notch, will definitely order again."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">B</div>
+            <div>
+              <div class="author-name">Babatunde Lawal</div>
+              <div class="author-location">📍 Port Harcourt, Nigeria</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section class="order-section" id="contact" style="padding:70px 0;background:var(--cream-dark)">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-badge"><i class="bi bi-telephone-fill"></i> Get In Touch</div>
+      <h2 class="section-title">Contact <span class="accent">Us</span></h2>
+      <div class="section-divider mx-auto"></div>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="order-card text-center p-4">
+          <div style="font-size:2.5rem;margin-bottom:1rem">📱</div>
+          <h5 style="font-family:'Playfair Display',serif;color:var(--dark)">WhatsApp Us</h5>
+          <p style="color:var(--text-light);font-size:0.9rem">Fastest way to order or ask questions</p>
+          <a href="https://wa.me/2349092495502" target="_blank" class="whatsapp-btn mt-2" style="max-width:220px;margin:0 auto">
+            <i class="bi bi-whatsapp"></i> 09092495502
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="order-card text-center p-4">
+          <div style="font-size:2.5rem;margin-bottom:1rem">✉️</div>
+          <h5 style="font-family:'Playfair Display',serif;color:var(--dark)">Email Us</h5>
+          <p style="color:var(--text-light);font-size:0.9rem">For orders, feedback & catering inquiries</p>
+          <a href="mailto:kammapanasonic@gmail.com" class="email-btn mt-2" style="max-width:260px;margin:0 auto">
+            <i class="bi bi-envelope-fill"></i> Send Email
+          </a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="order-card text-center p-4">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🕐</div>
+          <h5 style="font-family:'Playfair Display',serif;color:var(--dark)">Opening Hours</h5>
+          <p style="color:var(--text-light);font-size:0.9rem">We're open every day of the week!</p>
+          <div style="color:var(--green-light);font-weight:700;font-size:1rem">Mon – Sun</div>
+          <div style="color:var(--gold);font-weight:700;font-size:1.2rem">7:00 AM – 10:00 PM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer" id="footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="footer-brand">
+          <div style="font-size:2.5rem">🍽️</div>
+          <div class="brand-name">Taste Lounge</div>
+          <div class="tagline">Authentic Nigerian Flavours</div>
+        </div>
+        <p class="footer-about">
+          Founded in 2025 by Chef B. (Blessing Kalu), Taste Lounge brings the soul 
+          of Nigerian cuisine to your table. From hearty soups to fresh yoghurt — 
+          every meal is made with love and authenticity.
+        </p>
+        <div class="social-links">
+          <a href="https://wa.me/2349092495502" class="social-link" target="_blank" title="WhatsApp">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+          <a href="mailto:kammapanasonic@gmail.com" class="social-link" title="Email">
+            <i class="bi bi-envelope-fill"></i>
+          </a>
+          <a href="#" class="social-link" title="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-link" title="Facebook"><i class="bi bi-facebook"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-lg-2">
+        <div class="footer-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#hero"><i class="bi bi-chevron-right"></i> Home</a></li>
+          <li><a href="#menu"><i class="bi bi-chevron-right"></i> Menu</a></li>
+          <li><a href="#about"><i class="bi bi-chevron-right"></i> About Us</a></li>
+          <li><a href="#order"><i class="bi bi-chevron-right"></i> Order Now</a></li>
+          <li><a href="#contact"><i class="bi bi-chevron-right"></i> Contact</a></li>
+          <li><a href="admin.html"><i class="bi bi-chevron-right"></i> Admin Login</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-lg-3">
+        <div class="footer-title">Our Menu</div>
+        <ul class="footer-links">
+          <li><a href="#menu" onclick="filterMenu('meals')"><i class="bi bi-chevron-right"></i> Rice Meals</a></li>
+          <li><a href="#menu" onclick="filterMenu('soups')"><i class="bi bi-chevron-right"></i> Soups & Stews</a></li>
+          <li><a href="#menu" onclick="filterMenu('snacks')"><i class="bi bi-chevron-right"></i> Snacks</a></li>
+          <li><a href="#menu" onclick="filterMenu('drinks')"><i class="bi bi-chevron-right"></i> Drinks & Yoghurt</a></li>
+          <li><a href="#menu" onclick="filterMenu('grills')"><i class="bi bi-chevron-right"></i> Grills & BBQ</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="footer-title">Contact Us</div>
+        <div class="footer-contact-item">
+          <i class="bi bi-whatsapp"></i>
+          <a href="https://wa.me/2349092495502">09092495502</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-envelope-fill"></i>
+          <a href="mailto:kammapanasonic@gmail.com">kammapanasonic@gmail.com</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-clock-fill"></i>
+          <span>Mon – Sun: 7:00 AM – 10:00 PM</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="bi bi-geo-alt-fill"></i>
+          <span>Nigeria 🇳🇬</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      &copy; 2025–<span id="footerYear"></span> <span>Taste Lounge</span>. Founded by Chef B. (Blessing Kalu).
+      All rights reserved. Built with ❤️ for Nigeria.
+    </div>
+  </div>
+</footer>
+
+<!-- ===== FLOATING BUTTONS ===== -->
+<a href="https://wa.me/2349092495502" class="floating-whatsapp" target="_blank" title="Chat on WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>
+<button class="floating-cart-btn" onclick="openCart()" title="View Cart">
+  <i class="bi bi-basket2-fill"></i>
+  <span class="floating-count" style="display:none">0</span>
+</button>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div id="cartOverlay" class="cart-overlay"></div>
+<div id="cartSidebar" class="cart-sidebar">
+  <div class="cart-header">
+    <h3>🛒 Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()"><i class="bi bi-x-lg"></i></button>
+  </div>
+  <div id="cartBody" class="cart-body">
+    <div class="cart-empty">
+      <i class="bi bi-basket2"></i>
+      <p><strong>Your cart is empty</strong></p>
+      <p style="font-size:0.85rem">Browse the menu and add items!</p>
+    </div>
+  </div>
+  <div id="cartFooter" class="cart-footer" style="display:none">
+    <div class="cart-total">
+      <span>Total Amount:</span>
+      <span class="amount">₦0</span>
+    </div>
+    <button class="whatsapp-btn mb-2" onclick="orderViaWhatsApp()">
+      <i class="bi bi-whatsapp"></i> Order via WhatsApp
+    </button>
+    <button class="email-btn" onclick="orderViaEmail()">
+      <i class="bi bi-envelope-fill"></i> Order via Email
+    </button>
+    <button onclick="clearCart()" style="background:none;border:none;color:#999;font-size:0.8rem;margin-top:8px;cursor:pointer;width:100%">
+      🗑️ Clear Cart
+    </button>
+  </div>
+</div>
+
+<!-- ===== LOGIN MODAL ===== -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Welcome Back</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-logo">
+          <div class="brand-name">🍽️ Taste Lounge</div>
+          <div class="brand-sub">Sign in to your account</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="loginEmail" class="form-control" placeholder="your@email.com"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" id="loginPassword" class="form-control" placeholder="Your password"/>
+        </div>
+        <button class="btn-gold w-100 justify-content-center" onclick="login(event)" style="display:flex">
+          <i class="bi bi-box-arrow-in-right"></i> Log In
+        </button>
+        <div class="auth-divider">or</div>
+        <div class="auth-switch">
+          Don't have an account?
+          <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#registerModal">Create one free</a>
+        </div>
+        <div class="mt-3 p-3 rounded-3" style="background:#f0f9f0;border:1px solid #d0ecd0;font-size:0.8rem">
+          <strong>🔑 Admin Login:</strong> Use <code>admin@tastelounge.com</code> / <code>TasteAdmin2025</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== REGISTER MODAL ===== -->
+<div class="modal fade" id="registerModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Your Account</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-logo">
+          <div class="brand-name">🍽️ Taste Lounge</div>
+          <div class="brand-sub">Join us — it's free!</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Full Name *</label>
+          <input type="text" id="regName" class="form-control" placeholder="Blessing Kalu"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email Address *</label>
+          <input type="email" id="regEmail" class="form-control" placeholder="your@email.com"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" id="regPhone" class="form-control" placeholder="08012345678"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password * (min. 6 chars)</label>
+          <input type="password" id="regPassword" class="form-control" placeholder="Create a strong password"/>
+        </div>
+        <button class="btn-gold w-100 justify-content-center" onclick="register(event)" style="display:flex">
+          <i class="bi bi-person-plus-fill"></i> Create Account
+        </button>
+        <div class="auth-divider">or</div>
+        <div class="auth-switch">
+          Already have an account?
+          <a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Log in here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Main JS -->
+<script src="main.js"></script>
+<!-- config.js -->
+ <script src="/taste-lounge-backend/config.js"></script>
+<script>
+  // Update footer year
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+  // Update order cart preview
+  function updateOrderPreview() {
+    const list = document.getElementById('orderCartList');
+    if (!list) return;
+    const c = DB.getCart();
+    if (c.length === 0) {
+      list.innerHTML = '<em>No items yet — browse the menu above!</em>';
+      return;
+    }
+    const total = c.reduce((s, i) => s + i.price * i.qty, 0);
+    list.innerHTML = c.map(i =>
+      `<div class="d-flex justify-content-between py-1 border-bottom" style="border-color:#e0d4c0!important">
+        <span>${i.emoji} ${i.name} ×${i.qty}</span>
+        <strong style="color:var(--gold)">₦${(i.price*i.qty).toLocaleString()}</strong>
+      </div>`
+    ).join('') +
+    `<div class="d-flex justify-content-between mt-2 fw-bold">
+      <span>Total:</span><span style="color:var(--gold);font-size:1.1rem">₦${total.toLocaleString()}</span>
+    </div>`;
+  }
+
+  // Refresh preview when cart changes
+  const origUpdateCartUI = updateCartUI;
+  const origSave = DB.saveCart.bind(DB);
+  DB.saveCart = function(c) {
+    origSave(c);
+    updateOrderPreview();
+  };
+
+  document.addEventListener('DOMContentLoaded', updateOrderPreview);
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  // YOUR Firebase config (from Firebase console):
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  window.firebaseDB = db;
+  window.firebaseAuth = auth;
+
+  // Override order saving to use Firestore
+  window.saveOrderToFirebase = async (order) => {
+    await addDoc(collection(db, "orders"), order);
+  };
+
+  // Override user registration to use Firebase Auth
+  window.registerWithFirebase = async (email, password, name, phone) => {
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    await addDoc(collection(db, "users"), {
+      uid: cred.user.uid, name, email, phone,
+      role: 'customer', joinDate: new Date().toISOString()
+    });
+    return cred.user;
+  };
+
+  // Load all orders for admin
+  window.loadOrdersFromFirebase = async () => {
+    const q = query(collection(db, "orders"), orderBy("date", "desc"));
+    const snap = await getDocs(q);
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  };
+</script>
+</body>
+</html>

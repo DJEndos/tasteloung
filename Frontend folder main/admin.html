@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard — Taste Lounge</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body style="background:#f8f4ee;">
+
+<!-- Admin Gate (shown if not admin) -->
+<div id="adminGate" style="display:none;min-height:100vh;background:var(--dark);display:flex;align-items:center;justify-content:center;">
+  <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(201,146,42,0.3);border-radius:16px;padding:3rem;max-width:400px;width:90%;text-align:center;">
+    <div style="font-size:3rem;margin-bottom:1rem">🔐</div>
+    <h3 style="font-family:'Playfair Display',serif;color:var(--gold);margin-bottom:0.5rem">Admin Access Only</h3>
+    <p style="color:rgba(253,246,236,0.6);margin-bottom:2rem;font-size:0.9rem">This page is restricted to authorized administrators.</p>
+    <a href="index.html" class="btn-gold" style="display:inline-flex;gap:8px;align-items:center;text-decoration:none">
+      <i class="bi bi-house-fill"></i> Back to Website
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<aside class="admin-sidebar" id="adminSidebar">
+  <div class="admin-logo">
+    <div style="font-size:2rem">🍽️</div>
+    <div class="logo-text">Taste Lounge</div>
+    <div class="logo-sub">Admin Panel</div>
+  </div>
+  <nav class="admin-nav">
+    <div class="admin-nav-item active" onclick="showTab('dashboard')">
+      <i class="bi bi-speedometer2"></i> Dashboard
+    </div>
+    <div class="admin-nav-item" onclick="showTab('orders')">
+      <i class="bi bi-bag-check"></i> Orders
+    </div>
+    <div class="admin-nav-item" onclick="showTab('customers')">
+      <i class="bi bi-people"></i> Customers
+    </div>
+    <div class="admin-nav-item" onclick="showTab('reports')">
+      <i class="bi bi-bar-chart-line"></i> Reports
+    </div>
+    <hr style="border-color:rgba(255,255,255,0.08);margin:0.5rem 0"/>
+    <div class="admin-nav-item" onclick="window.open('index.html','_blank')">
+      <i class="bi bi-globe"></i> View Website
+    </div>
+    <div class="admin-nav-item" onclick="logout()" style="color:#ff6b6b!important">
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </div>
+  </nav>
+</aside>
+
+<!-- Main Content -->
+<div id="adminMain" class="admin-content" style="display:none">
+
+  <!-- Top Bar -->
+  <div class="admin-topbar">
+    <div>
+      <h4 style="font-family:'Playfair Display',serif;color:var(--dark);margin:0" id="pageTitle">Dashboard</h4>
+      <small style="color:var(--text-light)" id="pageDate"></small>
+    </div>
+    <div class="d-flex align-items-center gap-3">
+      <span style="font-size:0.9rem;color:var(--text-light)">
+        👩‍🍳 <strong>Chef B. (Blessing Kalu)</strong> — Admin
+      </span>
+      <button onclick="logout()" class="btn btn-sm btn-outline-danger rounded-pill">
+        <i class="bi bi-box-arrow-right me-1"></i>Logout
+      </button>
+    </div>
+  </div>
+
+  <div class="p-4">
+
+    <!-- DASHBOARD TAB -->
+    <div id="tab-dashboard">
+      <div class="row g-4 mb-4">
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="stat-num" id="totalOrdersCount">0</div>
+            <div class="stat-label">Total Orders</div>
+            <div style="font-size:2rem;opacity:0.3;margin-top:0.5rem">📦</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-card green">
+            <div class="stat-num" id="totalRevenue">₦0</div>
+            <div class="stat-label">Total Revenue</div>
+            <div style="font-size:2rem;opacity:0.3;margin-top:0.5rem">💰</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-card blue">
+            <div class="stat-num" id="totalCustomers">0</div>
+            <div class="stat-label">Registered Customers</div>
+            <div style="font-size:2rem;opacity:0.3;margin-top:0.5rem">👥</div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-card red">
+            <div class="stat-num" id="pendingOrders">0</div>
+            <div class="stat-label">Pending Orders</div>
+            <div style="font-size:2rem;opacity:0.3;margin-top:0.5rem">⏳</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Orders -->
+      <div class="order-table mb-4">
+        <div style="padding:1.2rem 1.5rem;border-bottom:2px solid #f0e8d8;display:flex;align-items:center;justify-content:space-between">
+          <h6 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin:0;color:var(--dark)">Recent Orders</h6>
+          <button onclick="showTab('orders')" class="btn btn-sm" style="background:var(--gold);color:var(--dark);border-radius:50px;font-weight:600;font-size:0.8rem">View All</button>
+        </div>
+        <div id="recentOrdersTable"></div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+            <h6 style="font-family:'Playfair Display',serif;color:var(--dark);margin-bottom:1rem">📊 Order Status Summary</h6>
+            <div id="statusSummary"></div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+            <h6 style="font-family:'Playfair Display',serif;color:var(--dark);margin-bottom:1rem">⚡ Quick Actions</h6>
+            <div class="d-grid gap-2">
+              <a href="https://wa.me/2349092495502" target="_blank" class="whatsapp-btn" style="font-size:0.9rem;padding:10px 20px">
+                <i class="bi bi-whatsapp"></i> Open WhatsApp Business
+              </a>
+              <a href="mailto:kammapanasonic@gmail.com" class="email-btn" style="font-size:0.9rem;padding:9px 20px">
+                <i class="bi bi-envelope"></i> Open Gmail
+              </a>
+              <button onclick="exportOrders()" class="btn" style="background:var(--green);color:white;border-radius:50px;font-weight:600;font-size:0.9rem;padding:10px">
+                <i class="bi bi-download me-2"></i>Export Orders (CSV)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS TAB -->
+    <div id="tab-orders" style="display:none">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 style="font-family:'Playfair Display',serif;color:var(--dark);margin:0">All Orders</h5>
+        <div class="d-flex gap-2">
+          <select id="statusFilter" class="form-select form-select-sm" style="width:160px;border-radius:50px" onchange="renderOrdersTab()">
+            <option value="">All Statuses</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="delivered">Delivered</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <button onclick="exportOrders()" class="btn btn-sm" style="background:var(--green);color:white;border-radius:50px;font-weight:600">
+            <i class="bi bi-download me-1"></i>Export CSV
+          </button>
+        </div>
+      </div>
+      <div class="order-table" id="allOrdersTable"></div>
+    </div>
+
+    <!-- CUSTOMERS TAB -->
+    <div id="tab-customers" style="display:none">
+      <h5 style="font-family:'Playfair Display',serif;color:var(--dark);margin-bottom:1.5rem">Registered Customers</h5>
+      <div class="order-table" id="customersTable"></div>
+    </div>
+
+    <!-- REPORTS TAB -->
+    <div id="tab-reports" style="display:none">
+      <h5 style="font-family:'Playfair Display',serif;color:var(--dark);margin-bottom:1.5rem">Sales Reports</h5>
+      <div class="row g-4" id="reportsContent"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Order Detail Modal -->
+<div class="modal fade" id="orderDetailModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Order Details</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="orderDetailBody" style="background:var(--cream)"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="main.js"></script>
+<script>
+const DB2 = {
+  getOrders: () => JSON.parse(localStorage.getItem('tl_orders') || '[]'),
+  saveOrders: (o) => localStorage.setItem('tl_orders', JSON.stringify(o)),
+  getUsers: () => JSON.parse(localStorage.getItem('tl_users') || '[]'),
+  getCurrentUser: () => JSON.parse(localStorage.getItem('tl_current_user') || 'null')
+};
+
+// Auth check
+document.addEventListener('DOMContentLoaded', () => {
+  const user = DB2.getCurrentUser();
+  if (!user || user.role !== 'admin') {
+    document.getElementById('adminGate').style.display = 'flex';
+    document.getElementById('adminMain').style.display = 'none';
+    document.getElementById('adminSidebar').style.display = 'none';
+  } else {
+    document.getElementById('adminGate').style.display = 'none';
+    document.getElementById('adminMain').style.display = 'block';
+    document.getElementById('adminSidebar').style.display = 'block';
+    document.getElementById('pageDate').textContent = new Date().toLocaleString('en-NG', {weekday:'long',year:'numeric',month:'long',day:'numeric'});
+    renderDashboard();
+  }
+});
+
+function showTab(tab) {
+  ['dashboard','orders','customers','reports'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t === tab ? '' : 'none';
+  });
+  document.querySelectorAll('.admin-nav-item').forEach((el,i) => {
+    el.classList.toggle('active', el.textContent.toLowerCase().includes(tab));
+  });
+  const titles = {dashboard:'Dashboard',orders:'Orders',customers:'Customers',reports:'Reports'};
+  document.getElementById('pageTitle').textContent = titles[tab] || tab;
+
+  if (tab === 'orders') renderOrdersTab();
+  if (tab === 'customers') renderCustomers();
+  if (tab === 'reports') renderReports();
+}
+
+function renderDashboard() {
+  const orders = DB2.getOrders();
+  const users = DB2.getUsers();
+  const total = orders.reduce((s,o) => s + (o.total || 0), 0);
+  const pending = orders.filter(o => o.status === 'pending').length;
+
+  document.getElementById('totalOrdersCount').textContent = orders.length;
+  document.getElementById('totalRevenue').textContent = '₦' + total.toLocaleString();
+  document.getElementById('totalCustomers').textContent = users.length;
+  document.getElementById('pendingOrders').textContent = pending;
+
+  // Recent orders table
+  const recent = orders.slice(0, 8);
+  renderOrdersTable('recentOrdersTable', recent, true);
+
+  // Status summary
+  const statusEl = document.getElementById('statusSummary');
+  const statuses = ['pending','confirmed','delivered','cancelled'];
+  const colors = {pending:'#ffc107',confirmed:'#28a745',delivered:'#007bff',cancelled:'#dc3545'};
+  statusEl.innerHTML = statuses.map(s => {
+    const count = orders.filter(o => o.status === s).length;
+    const pct = orders.length ? Math.round(count/orders.length*100) : 0;
+    return `<div class="mb-2">
+      <div class="d-flex justify-content-between mb-1">
+        <small style="text-transform:capitalize;font-weight:600;color:var(--dark)">${s}</small>
+        <small style="color:var(--text-light)">${count} orders (${pct}%)</small>
+      </div>
+      <div style="height:8px;background:#f0e8d8;border-radius:4px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${colors[s]};border-radius:4px;transition:width 0.8s ease"></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderOrdersTable(containerId, orders, compact = false) {
+  const el = document.getElementById(containerId);
+  if (!orders.length) {
+    el.innerHTML = '<div style="padding:3rem;text-align:center;color:var(--text-light)"><div style="font-size:3rem;margin-bottom:1rem">📭</div><p>No orders yet</p></div>';
+    return;
+  }
+  el.innerHTML = `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse">
+    <thead style="background:var(--dark);color:var(--cream)">
+      <tr>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Order ID</th>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Customer</th>
+        ${compact ? '' : '<th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Phone</th>'}
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Items</th>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Total</th>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Status</th>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Date</th>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${orders.map(o => `
+        <tr style="border-bottom:1px solid #f0e8d8" onmouseover="this.style.background='#fdfaf5'" onmouseout="this.style.background=''">
+          <td style="padding:12px 16px;font-size:0.85rem"><code style="color:var(--gold);font-size:0.78rem">${o.id}</code></td>
+          <td style="padding:12px 16px;font-size:0.85rem;font-weight:600">${o.customer}</td>
+          ${compact ? '' : `<td style="padding:12px 16px;font-size:0.82rem">${o.phone || '—'}</td>`}
+          <td style="padding:12px 16px;font-size:0.82rem">${(o.items||[]).length} item(s)</td>
+          <td style="padding:12px 16px;font-size:0.88rem;font-weight:700;color:var(--gold)">₦${(o.total||0).toLocaleString()}</td>
+          <td style="padding:12px 16px">
+            <select onchange="updateOrderStatus('${o.id}', this.value)" style="border:1px solid #ddd;border-radius:50px;padding:3px 10px;font-size:0.75rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif">
+              <option value="pending" ${o.status==='pending'?'selected':''}>⏳ Pending</option>
+              <option value="confirmed" ${o.status==='confirmed'?'selected':''}>✅ Confirmed</option>
+              <option value="delivered" ${o.status==='delivered'?'selected':''}>🚀 Delivered</option>
+              <option value="cancelled" ${o.status==='cancelled'?'selected':''}>❌ Cancelled</option>
+            </select>
+          </td>
+          <td style="padding:12px 16px;font-size:0.8rem;color:var(--text-light)">${new Date(o.date).toLocaleDateString('en-NG',{day:'2-digit',month:'short',year:'numeric'})}</td>
+          <td style="padding:12px 16px">
+            <button onclick="viewOrderDetail('${o.id}')" class="btn btn-sm" style="background:var(--green);color:white;border-radius:50px;font-size:0.75rem;font-weight:600">
+              <i class="bi bi-eye-fill"></i> View
+            </button>
+          </td>
+        </tr>`).join('')}
+    </tbody>
+  </table></div>`;
+}
+
+function renderOrdersTab() {
+  const filter = document.getElementById('statusFilter')?.value || '';
+  let orders = DB2.getOrders();
+  if (filter) orders = orders.filter(o => o.status === filter);
+  renderOrdersTable('allOrdersTable', orders, false);
+}
+
+function renderCustomers() {
+  const users = DB2.getUsers();
+  const orders = DB2.getOrders();
+  const el = document.getElementById('customersTable');
+  if (!users.length) {
+    el.innerHTML = '<div style="padding:3rem;text-align:center;color:var(--text-light)"><div style="font-size:3rem">👥</div><p>No registered customers yet</p></div>';
+    return;
+  }
+  el.innerHTML = `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse">
+    <thead style="background:var(--dark);color:var(--cream)">
+      <tr>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Name</th>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Email</th>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Phone</th>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Total Orders</th>
+        <th style="padding:12px 16px;font-size:0.78rem;text-transform:uppercase;letter-spacing:1px;font-weight:600;text-align:left">Joined</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${users.map(u => {
+        const userOrders = orders.filter(o => o.userId === u.id).length;
+        return `<tr style="border-bottom:1px solid #f0e8d8">
+          <td style="padding:12px 16px;font-weight:600">${u.name}</td>
+          <td style="padding:12px 16px;font-size:0.85rem">${u.email}</td>
+          <td style="padding:12px 16px;font-size:0.85rem">${u.phone || '—'}</td>
+          <td style="padding:12px 16px"><span style="background:rgba(201,146,42,0.15);color:var(--gold-dark);padding:3px 10px;border-radius:50px;font-weight:700;font-size:0.82rem">${userOrders}</span></td>
+          <td style="padding:12px 16px;font-size:0.8rem;color:var(--text-light)">${new Date(u.joinDate||Date.now()).toLocaleDateString('en-NG')}</td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  </table></div>`;
+}
+
+function renderReports() {
+  const orders = DB2.getOrders();
+  const total = orders.reduce((s,o) => s + (o.total||0), 0);
+  const delivered = orders.filter(o => o.status==='delivered');
+  const deliveredTotal = delivered.reduce((s,o) => s + (o.total||0), 0);
+
+  // Top items
+  const itemCounts = {};
+  orders.forEach(o => (o.items||[]).forEach(i => {
+    itemCounts[i.name] = (itemCounts[i.name]||0) + i.qty;
+  }));
+  const topItems = Object.entries(itemCounts).sort((a,b) => b[1]-a[1]).slice(0,5);
+
+  document.getElementById('reportsContent').innerHTML = `
+    <div class="col-md-6">
+      <div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);margin-bottom:1.5rem">
+        <h6 style="font-family:'Playfair Display',serif;color:var(--dark);margin-bottom:1.5rem">💰 Revenue Summary</h6>
+        ${[
+          ['Total Revenue (All Orders)', '₦' + total.toLocaleString(), '#C9922A'],
+          ['Delivered Orders Revenue', '₦' + deliveredTotal.toLocaleString(), '#2D6A4F'],
+          ['Avg. Order Value', '₦' + (orders.length ? Math.round(total/orders.length).toLocaleString() : '0'), '#3498db'],
+          ['Total Orders', orders.length, '#9b59b6'],
+        ].map(([label,value,color]) =>
+          `<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0e8d8">
+            <span style="color:var(--text-light);font-size:0.9rem">${label}</span>
+            <strong style="color:${color};font-size:1rem">${value}</strong>
+          </div>`).join('')}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div style="background:white;border-radius:16px;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+        <h6 style="font-family:'Playfair Display',serif;color:var(--dark);margin-bottom:1.5rem">🏆 Top Selling Items</h6>
+        ${topItems.length ? topItems.map(([name, qty], i) =>
+          `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #f0e8d8">
+            <span style="font-size:0.9rem;font-weight:600">${['🥇','🥈','🥉','4️⃣','5️⃣'][i]} ${name}</span>
+            <span style="background:rgba(201,146,42,0.15);color:var(--gold-dark);padding:3px 12px;border-radius:50px;font-weight:700;font-size:0.82rem">${qty} sold</span>
+          </div>`).join('') : '<p style="color:var(--text-light);text-align:center;padding:2rem 0">No orders yet</p>'}
+      </div>
+    </div>`;
+}
+
+function updateOrderStatus(orderId, status) {
+  const orders = DB2.getOrders();
+  const idx = orders.findIndex(o => o.id === orderId);
+  if (idx > -1) {
+    orders[idx].status = status;
+    DB2.saveOrders(orders);
+    renderDashboard();
+    showToast(`Order ${orderId} marked as ${status}`, 'success');
+  }
+}
+
+function viewOrderDetail(orderId) {
+  const orders = DB2.getOrders();
+  const order = orders.find(o => o.id === orderId);
+  if (!order) return;
+  document.getElementById('orderDetailBody').innerHTML = `
+    <div class="row g-3">
+      <div class="col-md-6">
+        <h6 style="color:var(--gold);font-family:'Playfair Display',serif">Customer Info</h6>
+        <p><strong>Name:</strong> ${order.customer}</p>
+        <p><strong>Phone:</strong> ${order.phone || 'Not provided'}</p>
+        <p><strong>Address:</strong> ${order.address || 'Not provided'}</p>
+        ${order.notes ? `<p><strong>Notes:</strong> ${order.notes}</p>` : ''}
+      </div>
+      <div class="col-md-6">
+        <h6 style="color:var(--gold);font-family:'Playfair Display',serif">Order Info</h6>
+        <p><strong>Order ID:</strong> <code>${order.id}</code></p>
+        <p><strong>Date:</strong> ${new Date(order.date).toLocaleString('en-NG')}</p>
+        <p><strong>Status:</strong> <span class="status-badge ${order.status}">${order.status}</span></p>
+        <p><strong>Total:</strong> <span style="color:var(--gold);font-weight:700;font-size:1.1rem">₦${(order.total||0).toLocaleString()}</span></p>
+      </div>
+      <div class="col-12">
+        <h6 style="color:var(--gold);font-family:'Playfair Display',serif">Items Ordered</h6>
+        <table class="table table-sm" style="background:white;border-radius:8px;overflow:hidden">
+          <thead style="background:var(--dark);color:var(--cream)">
+            <tr><th>Item</th><th>Qty</th><th>Unit Price</th><th>Subtotal</th></tr>
+          </thead>
+          <tbody>
+            ${(order.items||[]).map(i => `
+              <tr>
+                <td>${i.emoji} ${i.name}</td>
+                <td>${i.qty}</td>
+                <td>₦${i.price.toLocaleString()}</td>
+                <td>₦${(i.price*i.qty).toLocaleString()}</td>
+              </tr>`).join('')}
+          </tbody>
+          <tfoot>
+            <tr style="background:#f8f4ee;font-weight:700">
+              <td colspan="3" class="text-end">Total:</td>
+              <td style="color:var(--gold)">₦${(order.total||0).toLocaleString()}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="col-12 d-flex gap-2 flex-wrap">
+        <a href="https://wa.me/234${order.phone?.replace(/^0/,'') || '9092495502'}?text=${encodeURIComponent('Hi '+order.customer+'! Your Taste Lounge order '+order.id+' has been confirmed ✅')}"
+           target="_blank" class="whatsapp-btn" style="max-width:240px">
+          <i class="bi bi-whatsapp"></i> Message Customer
+        </a>
+      </div>
+    </div>`;
+  new bootstrap.Modal(document.getElementById('orderDetailModal')).show();
+}
+
+function exportOrders() {
+  const orders = DB2.getOrders();
+  if (!orders.length) { showToast('No orders to export', 'warning'); return; }
+  const headers = ['Order ID','Customer','Phone','Address','Items','Total (₦)','Status','Date'];
+  const rows = orders.map(o => [
+    o.id, o.customer, o.phone||'', o.address||'',
+    (o.items||[]).map(i => `${i.name}(${i.qty})`).join('; '),
+    o.total||0, o.status,
+    new Date(o.date).toLocaleString('en-NG')
+  ]);
+  const csv = [headers, ...rows].map(r => r.map(v => `"${v}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url;
+  a.download = `taste-lounge-orders-${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  showToast('Orders exported successfully!', 'success');
+}
+</script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, updateDoc, doc, query, orderBy } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } 
+    from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  // YOUR Firebase config (from Firebase console):
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  window.firebaseDB = db;
+  window.firebaseAuth = auth;
+
+  // Override order saving to use Firestore
+  window.saveOrderToFirebase = async (order) => {
+    await addDoc(collection(db, "orders"), order);
+  };
+
+  // Override user registration to use Firebase Auth
+  window.registerWithFirebase = async (email, password, name, phone) => {
+    const cred = await createUserWithEmailAndPassword(auth, email, password);
+    await addDoc(collection(db, "users"), {
+      uid: cred.user.uid, name, email, phone,
+      role: 'customer', joinDate: new Date().toISOString()
+    });
+    return cred.user;
+  };
+
+  // Load all orders for admin
+  window.loadOrdersFromFirebase = async () => {
+    const q = query(collection(db, "orders"), orderBy("date", "desc"));
+    const snap = await getDocs(q);
+    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  };
+</script>
+</body>
+</html>
